@@ -1,3 +1,5 @@
+Forking this to work on a [wavelight technology](https://en.wikipedia.org/wiki/Wavelight)
+
 # RGB-PC
 
 ## Introduction
