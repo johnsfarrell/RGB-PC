@@ -1,11 +1,22 @@
 <template>
   <!-- create bootstrap card with -->
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">
+  <div class="card mt-3 mb-3">
+    <h5 class="card-header">
+      <div
+        class="collapsed d-block"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapse-main-collapsed"
+        id="heading-collapsed"
+      >
+        <i class="fa fa-chevron-down pull-right"></i>
         Light Strip Controls For: <em>{{ strip.device.name }}</em>
-      </h5>
-
+      </div>
+    </h5>
+    <div
+      id="collapse-main-collapsed"
+      class="collapse show p-3"
+      aria-labelledby="heading-collapsed"
+    >
       <button v-if="!isOn" @click="turnOn" class="float-end btn btn-primary">
         Turn On
       </button>
@@ -155,5 +166,8 @@ export default {
 }
 .pickr {
   display: inline;
+}
+#heading-collapsed:hover {
+  color: #0d6efd;
 }
 </style>

@@ -170,6 +170,7 @@ class Strip {
         return xor
     }
     async runStringCommand(string) {
+        console.log(`[runStringCommand]: ${string}`)
         await this.characteristic.writeValueWithoutResponse(commands.convert(string));
     }
 }
@@ -192,7 +193,6 @@ let segmentsMap = {
     13: "0010",
     14: "0020",
     15: "0040",
-
 
 }
 let commands = {

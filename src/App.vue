@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-4">
-    <h1 class="text-center rainbow rainbow_text_animated">RGB-PC</h1>
+    <h1 class="text-center rainbow rainbow_text_animated">RGB-PC [Wave Light]</h1>
 
     <img id="screenshot-image" src="" alt="" width="" height="" />
     <img id="cropped-image" src="" alt="" width="" height="" />
@@ -27,7 +27,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(device, index) in devices" :key="index">
+        <tr v-for="(device, index) in filteredDevices" :key="index">
           <th scope="row">{{ index + 1 }}</th>
           <td>{{ device.deviceName }}</td>
           <td>{{ device.deviceId }}</td>
@@ -41,13 +41,13 @@
     </table>
 
     <LightControls v-if="strip" :strip="strip"></LightControls>
-    <LightSync v-if="strip" :strip="strip"></LightSync>
+    <WaveLight v-if="strip" :strip="strip"></WaveLight>
   </div>
 </template>
 
 <script>
 import LightControls from "./components/LightControls.vue";
-import LightSync from "./components/LightSync.vue";
+import WaveLight from "./components/WaveLight.vue";
 import Strip from "./models/Strip";
 import state from "./state";
 
@@ -60,7 +60,7 @@ export default {
   name: "App",
   components: {
     LightControls,
-    LightSync,
+    WaveLight,
   },
   data: () => {
     return {
@@ -70,6 +70,11 @@ export default {
       strip: null,
       connected: false,
     };
+  },
+  computed: {
+    filteredDevices() {
+      return this.devices.filter(device => device.deviceName.includes('Govee'));
+    }
   },
   methods: {
     openHelp() {
